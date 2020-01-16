@@ -1,55 +1,111 @@
 <template>
-  <div>
-    <nuxt />
+  <div class="page">
+    <div class="uneve-header">
+      <div class="uneve-header-section">
+        <div class="uneve-header-logo">
+          <uneve-logo />
+        </div>
+        <div v-if="screenSize > 768">
+          <div class="uneve-header-menu">
+            <a href="#">Início</a>
+            <a href="#">Uneve</a>
+            <a href="#">Benefícios</a>
+            <a href="#">Blog</a>
+          </div>
+        </div>
+        <div v-else>
+          <uneve-mobile-menu />
+        </div>
+      </div>
+      <div class="uneve-header-section">
+        <div class="uneve-spacer-160"></div>
+      </div>
+    </div>
+    <div class="uneve-white-box">
+      <nuxt />
+    </div>
   </div>
 </template>
 
-<style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
+<script>
+  import UneveLogo from '~/components/UneveLogo.vue'
+  import UneveMobileMenu from '~/components/UneveMobileMenu.vue'
 
+  export default {
+    components: {
+      UneveLogo,
+      UneveMobileMenu
+    },
+    head () {
+      return {
+        link: [
+          { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Poppins&display=swap' }
+        ]
+      }
+    },
+    computed: {
+      screenSize: function () {
+        return screen.width;
+      }
+    }
+  }
+</script>
+
+<style lang="sass">
+$primary-color: #01C0C8
+$side-spacer: 160px
+
+.uneve-header
+  background-color: $primary-color
+
+.uneve-header-section
+  max-height: 160px
+  display: flex
+  margin: 0 auto
+  align-items: center
+  max-width: 1110px
+  justify-content: space-between
+
+.uneve-header-menu
+  padding: 68px 0
+
+.uneve-header-menu a
+  color: #fff
+  margin-left: 24px
+  font-size: 16px
+  line-height: 24px
+
+.uneve-spacer-160
+  height: 160px
+
+.uneve-white-box
+  margin: -160px auto 80px
+  background-color: #fff
+  padding: 80px
+  max-width: 1110px
+  box-shadow: 4px 4px 32px rgba(76, 87, 89, 0.08)
+  border-radius: 0 0 48px 48px
+
+a
+  text-decoration: none
+
+html
+  background-color: #E8ECED
 *,
 *:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
+*:after
+  box-sizing: border-box
+  margin: 0
+  font-family: 'Poppins', sans-serif
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
+@media (min-width: 1024px)
+  .uneve-white-box,
+  .uneve-header-section
+    max-width: 976px
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
+@media (max-width: 768px)
+  .uneve-white-box,
+  .uneve-header-section
+    padding: 40px 20px
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
 </style>

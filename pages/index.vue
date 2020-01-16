@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <logo />
+      <uneve-logo />
       <h1 class="title">
         health-care-line
       </h1>
@@ -29,11 +29,11 @@
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import UneveLogo from '~/components/UneveLogo.vue'
 
 export default {
   components: {
-    Logo
+    UneveLogo
   }
 }
 </script>
